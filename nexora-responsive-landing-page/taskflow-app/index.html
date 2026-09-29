@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f7f4" />
+  <title>Bloom — your day, in full colour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Bloom home"><span class="brand-mark">b</span><span>bloom<span class="brand-dot">.</span></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="all"><span class="nav-icon">◫</span> My tasks <span class="nav-count" id="navTotal">0</span></button>
+        <button class="nav-item" data-view="today"><span class="nav-icon">◷</span> Today</button>
+        <button class="nav-item" data-view="upcoming"><span class="nav-icon">▦</span> Upcoming</button>
+        <button class="nav-item" data-view="completed"><span class="nav-icon">✓</span> Completed</button>
+      </nav>
+      <div class="side-heading"><span>YOUR LISTS</span><button class="icon-button small" id="addList" aria-label="Add a list">＋</button></div>
+      <div class="list-nav" id="listNav"></div>
+      <div class="sidebar-bottom">
+        <div class="focus-card"><div class="focus-sparkle">✳</div><p class="focus-title">A little progress<br />goes a long way.</p><p class="focus-sub">Keep showing up for yourself.</p><div class="focus-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <button class="profile"><span class="avatar">S</span><span><strong>Sam Morgan</strong><small>Free plan</small></span><span class="profile-menu">···</span></button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="breadcrumbs">Workspace <span>/</span> <strong id="breadcrumb">My tasks</strong></div><div class="top-actions"><span class="date-label" id="headerDate"></span><button class="icon-button theme-button" id="themeToggle" aria-label="Toggle dark mode">☾</button></div></header>
+      <section class="welcome"><div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR PERSONAL SPACE</div><h1 id="greeting">Make today<br />a <span>good one.</span> <span class="wave">✳</span></h1><p class="welcome-copy">A little structure, a lot more breathing room.</p></div><div class="welcome-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-flower">✿</div><span class="art-star star-a">✳</span><span class="art-star star-b">✦</span><span class="art-star star-c">·</span><div class="art-label">take it<br />one thing<br />at a time<span>↙</span></div></div></section>
+      <section class="stats" aria-label="Task overview"><div class="stat-card stat-lilac"><div class="stat-top"><span>In progress</span><span class="stat-icon">↗</span></div><div class="stat-bottom"><strong id="inProgressCount">0</strong><span class="stat-caption">things in motion</span><div class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="stat-card stat-peach"><div class="stat-top"><span>Completed</span><span class="stat-icon">✳</span></div><div class="stat-bottom"><strong id="completedCount">0</strong><span class="stat-caption">little wins today</span><div class="progress-track"><i id="progressBar"></i></div></div></div><div class="stat-card stat-mint"><div class="stat-top"><span>Next up</span><span class="stat-icon">◷</span></div><div class="stat-bottom"><strong class="next-time" id="nextTime">—</strong><span class="stat-caption" id="nextTaskLabel">nothing on the clock</span><div class="next-line"><i></i><i></i><i></i><i></i><i></i></div></div></div></section>
+      <section class="tasks-section"><div class="section-heading"><div><div class="eyebrow section-eyebrow">YOUR SPACE TO GET THINGS DONE</div><h2 id="sectionTitle">The to-do list<span class="title-spark">✳</span></h2></div><button class="primary-button" id="openModal"><span>＋</span> Add a task</button></div>
+        <div class="toolbar"><div class="filter-tabs" role="tablist" aria-label="Filter tasks"><button class="filter-tab selected" data-filter="all">All <span id="allCount">0</span></button><button class="filter-tab" data-filter="active">To do <span id="todoCount">0</span></button><button class="filter-tab" data-filter="completed">Done <span id="doneCount">0</span></button></div><div class="toolbar-right"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Find a task..." aria-label="Search tasks" /></label><select id="sortSelect" aria-label="Sort tasks"><option value="date">Sort: Date</option><option value="priority">Sort: Priority</option><option value="title">Sort: A–Z</option></select></div></div>
+        <div class="task-list" id="taskList" aria-live="polite"></div><div class="list-footer" id="listFooter"></div>
+      </section>
+      <footer class="footer"><span>Made for your kind of productivity <span class="footer-heart">♥</span></span><span>Little steps count.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><section class="task-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><div><div class="eyebrow">MAKE SOME ROOM FOR IT</div><h2 id="modalTitle">Add a task<span class="title-spark">✳</span></h2></div><button class="icon-button" id="closeModal" aria-label="Close">×</button></div><form id="taskForm" novalidate><input type="hidden" id="editTaskId" /><label class="field-label" for="taskTitle">What needs doing?</label><input id="taskTitle" class="form-control" type="text" placeholder="A tiny step or a big idea..." maxlength="90" required /><div class="field-error" id="titleError"></div><label class="field-label" for="taskNotes">Add a note <span class="optional">(optional)</span></label><textarea id="taskNotes" class="form-control" rows="3" maxlength="240" placeholder="Give yourself a little context..."></textarea><div class="form-row"><div class="form-group"><label class="field-label" for="taskListSelect">List</label><select id="taskListSelect" class="form-control"></select></div><div class="form-group"><label class="field-label" for="taskDate">Due date</label><input id="taskDate" class="form-control" type="date" /></div></div><div class="form-row"><div class="form-group"><label class="field-label" for="taskPriority">Priority</label><select id="taskPriority" class="form-control"><option value="low">Low — easy does it</option><option value="medium" selected>Medium — steady pace</option><option value="high">High — top of the list</option></select></div><div class="form-group"><label class="field-label" for="taskTime">Time <span class="optional">(optional)</span></label><input id="taskTime" class="form-control" type="time" /></div></div><div class="modal-actions"><button class="text-button" type="button" id="cancelModal">Cancel</button><button class="primary-button" type="submit" id="saveTask"><span>✳</span> Add task</button></div></form></section></div>
+  <script src="app.js"></script>
+</body>
+</html>
